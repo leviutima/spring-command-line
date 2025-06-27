@@ -4,7 +4,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.com.alura.screenmatch.model.DadosSeries;
 import br.com.alura.screenmatch.service.ApiConsume;
+import br.com.alura.screenmatch.service.ConverterDados;
 
 @SpringBootApplication
 public class ScreenmatchApplication implements CommandLineRunner{
@@ -18,8 +20,9 @@ public class ScreenmatchApplication implements CommandLineRunner{
 		var apiConsume = new ApiConsume();
 		var json = apiConsume.obterDados("https://www.omdbapi.com/?t=gilmore+girls&apikey=6585022c");
 		System.err.println(json);
-		json = apiConsume.obterDados("https://coffee.alexflipnote.dev/random.json");
-		System.err.println(json);
+		ConverterDados conversor = new ConverterDados();
+		DadosSeries dados = conversor.obterDados(json, DadosSeries.class);
+		System.err.println(dados);
 	}
 
 }
