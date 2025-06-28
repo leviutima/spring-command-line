@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import br.com.alura.screenmatch.model.DadosEpisodio;
 import br.com.alura.screenmatch.model.DadosSeries;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.service.ApiConsume;
@@ -28,18 +27,21 @@ public class PrincipalAlura {
 
         List<DadosTemporada> temporadas = new ArrayList<>();
 
+
         for (int i = 1; i <= dadosSeries.temporadas(); i++) {
             var jsonTemporadas = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + "&season=" + i + API_KEY);
             DadosTemporada dadosTemporada = conversor.obterDados(jsonTemporadas, DadosTemporada.class);
             temporadas.add(dadosTemporada);
         }
-        System.out.println(temporadas);
+        temporadas.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
 
-        for( int i = 0; i < dadosSeries.temporadas(); i++) {
-            List<DadosEpisodio> episodiosTemporada = temporadas.get(i).episodios();
-            for(int j = 0; j < episodiosTemporada.size(); j++) {
-                System.err.println(episodiosTemporada.get(j).titulo());
-            }
-        }
+        // for( int i = 0; i < dadosSeries.temporadas(); i++) {
+        //     List<DadosEpisodio> episodiosTemporada = temporadas.get(i).episodios();
+        //     for(int j = 0; j < episodiosTemporada.size(); j++) {
+        //         System.err.println(episodiosTemporada.get(j).titulo());
+        //     }
+        // }
+
+        
     }
 }
