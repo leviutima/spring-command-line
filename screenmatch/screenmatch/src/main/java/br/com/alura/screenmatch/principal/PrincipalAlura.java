@@ -42,7 +42,7 @@ public class PrincipalAlura {
         // // }
 
         List<String> nomes = Arrays.asList("Jacque", "Iasmin", "Paulo", "Levi");
-        nomes.stream().sorted().limit(3).forEach(System.out::println);
+        nomes.stream().sorted().limit(3).filter(l -> l.startsWith("L")).map(l -> l.toUpperCase()).forEach(System.out::println);
                
         
     }
