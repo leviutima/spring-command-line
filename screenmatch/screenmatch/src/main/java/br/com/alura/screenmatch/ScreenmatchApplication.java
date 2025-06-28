@@ -17,14 +17,6 @@ public class ScreenmatchApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		PrincipalAlura principal = new PrincipalAlura();
 		principal.exibeMenu();
-		// List<DadosTemporada> temporadas = new ArrayList<>();
-
-		// for (int i = 1; i<=dadosSeries.temporadas(); i++) {
-		// 	var jsonTemporadas = apiConsume.obterDados("https://www.omdbapi.com/?t=gilmore+girls&season=" + i + "&apikey=6585022c");
-		// 	DadosTemporada dadosTemporada = conversor.obterDados(jsonTemporadas, DadosTemporada.class);
-		// 	temporadas.add(dadosTemporada);
-		// }
-		// System.out.println(temporadas);
 	}
 
 }
