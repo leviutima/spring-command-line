@@ -67,8 +67,8 @@ public class PrincipalAlura {
                 System.out.println("Digite_o_nome_do_título_do_episódio");
                 var trechoTitulo = leitura.nextLine();
                 Optional<Episodio> episodioBuscado = episodios.stream()
-                                .filter(e -> e.getTitulo().toLowerCase().contains(trechoTitulo))
-                                .findFirst();
+                                .filter(e -> e.getTitulo().toLowerCase().contains(trechoTitulo.toLowerCase()))
+                                .findAny();
                 if (episodioBuscado.isPresent()) {
                         System.out.println("Episodio encontrado");
                         System.out.println("Temporada" + episodioBuscado.get().getTemporada());
