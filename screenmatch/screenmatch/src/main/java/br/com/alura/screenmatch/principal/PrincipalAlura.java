@@ -86,11 +86,22 @@ public class PrincipalAlura {
                 System.out.println(avaliacoesTemporada);
 
                 DoubleSummaryStatistics est = episodios.stream()
-                                                       .filter(e -> e.getAvaliacao() > 0.0)
-                                                       .collect(Collectors.summarizingDouble(e -> e.getAvaliacao()));
-                                                       System.out.println("média: " + est.getAverage());
-                                                       System.out.println("Melhor episódio: " + est.getMax());
-                                                       System.out.println("Pior episódio: " + est.getMin());
+                                .filter(e -> e.getAvaliacao() > 0.0)
+                                .collect(Collectors.summarizingDouble(e -> e.getAvaliacao()));
+                System.out.println("média: " + est.getAverage());
+                System.out.println("Melhor episódio: " + est.getMax());
+                System.out.println("Pior episódio: " + est.getMin());
+                Optional<Episodio> melhorEpisodio = episodios.stream()
+                                .filter(e -> e.getAvaliacao() == est.getMax())
+                                .findFirst(); // ou .max(Comparator.comparingDouble(Episodio::getAvaliacao))
+
+                // Encontrar o episódio com a menor avaliação
+                Optional<Episodio> piorEpisodio = episodios.stream()
+                                .filter(e -> e.getAvaliacao() == est.getMin())
+                                .findFirst(); // ou .min(Comparator.comparingDouble(Episodio::getAvaliacao))
+
+                melhorEpisodio.ifPresent(e -> System.out.println("Melhor episódio: " + e.getTitulo()));
+                piorEpisodio.ifPresent(e -> System.out.println("Pior episódio: " + e.getTitulo()));
 
                 // System.err.println("A partir de que ano você deseja ver os episódios");
                 // var ano = leitura.nextInt();
